@@ -1,0 +1,124 @@
+@import url("transdmin.css");
+
+.warning {
+	color:#FF2222;
+	font-family:Verdana;
+	font-size:12px;
+	padding: 4px;
+	margin: 3px 0 0 10px;
+}
+
+.select {
+	background:#F5F5F5 none repeat scroll 0 0;
+	border:1px solid #CCCCCC;
+	color:#555555;
+	display:inline;
+	font-family:Tahoma,Verdana;
+	font-size:12px;
+	margin:3px 0 0;
+	padding:3px;
+	width:185px;
+}
+
+.button {
+	width: 100px;
+	background-image: url(../img/button-bg.gif);
+	padding: 1px;
+	font-family: Tahoma;
+	font-size: 12px;
+	border: 1px solid #d5d5c8;
+	background-color: #dbdbce;
+}
+
+a.view, a.delete, a.add, a.edit, a.back, a.anchor {
+	font-size: 9pt;
+	color:#900;
+	padding-left:20px;
+	text-decoration: none;
+}
+
+a.anchor {
+	padding-left:0;
+}
+a.view {
+	background:url(../img/magnifier.png) left center no-repeat;
+}
+a.delete {
+	background:url(../img/delete.png) left center no-repeat;
+}
+a.add {
+	background:url(../img/add.png) left center no-repeat;
+}
+a.edit {
+	background:url(../img/load.png) left center no-repeat;
+}
+a.back {
+	background:url(../img/prev.gif) left center no-repeat;
+}
+a.view:hover, a.delete:hover, a.add:hover, a.edit:hover, a.back:hover, a.anchor:hover {
+	color:#000;
+}
+
+a.button {
+    -moz-border-radius: 20px 20px 20px 20px;
+    background: url("/login/background_button.png") repeat-x scroll bottom center #FFFFFF;
+    border: 1px solid #B2B2B2;
+    color: #333333;
+    font-size: 11px;
+	text-decoration: none;
+    font-weight: bold;
+    padding: 5px 30px;
+    margin-right: 10px;
+}
+
+div.paging {
+	font-size: 10pt;
+	margin:5px 0px;
+	text-align:right;
+}
+div.paging a {
+	color:#900;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+div.paging a:hover {
+	color:#c00;
+}
+div.paging b {
+	color:#900;
+}
+
+/* Table */
+	/* 2nd table */
+table.second {
+	width:100%;
+	font:bold 11px "Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
+	border-collapse:collapse;
+}
+table.second caption {
+	font-style:italic;
+	padding:0 0 5px;
+	text-align:right;
+	width:700px;
+}
+table.second th {
+	background:url("../img/bg_header.jpg") no-repeat scroll 0 0 #CAE8EA;
+	border:1px solid #C1DAD7;
+	color:#4F6B72;
+	letter-spacing:2px;
+	padding:6px 6px 6px 12px;
+	text-align:left;
+	text-transform:uppercase;
+}
+table.second td {
+	background:none repeat scroll 0 0 #FFFFFF;
+	border:1px solid #C1DAD7;
+	border-bottom:1px solid #C1DAD7;
+	padding:6px 6px 6px 12px;
+}
+table.second tr.alt td {
+	background:none repeat scroll 0 0 #F4F9FE;
+}
+table.second tr:hover td {
+	background-color:#F1F1F1;
+}

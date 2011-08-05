@@ -1,0 +1,250 @@
+/* Basic  ---------------------------------------- */
+
+.clear { clear: both; }
+
+body {
+	font-family: Verdana;
+	font-size: 12px;
+	color: #646464;
+	text-align: center;
+}
+
+#wrapper {
+	text-align: left;
+	width: 930px;
+	margin: 0 auto;
+}
+
+#report {
+	text-align: left;
+	margin: 0 20px;
+}
+
+/* Logo  ---------------------------------------- */
+
+h1 {
+	margin: 15px 0 10px 5px;
+	width: 225px;
+	height: 28px;
+	background: url(../img/transdmin-light.gif) no-repeat left top;
+}
+
+h1 a {
+	display: block;
+	width: 225px;
+	height: 28px;
+}
+
+h1 span { display: none; }
+
+/* Main Navigation ---------------------------------------- */
+
+#mainNav {
+	width: 918px;
+	height: 37px;
+	padding: 6px;
+	margin: 0;
+	background: url(../img/top-menu-bg.gif) no-repeat left top; 
+	/* We used a background image making the thick border and the thin one to keep the html structure simple */
+}
+
+#mainNav li {
+	float: left;
+	height: 37px;
+	border-right: 1px solid #ddd;
+}
+
+#mainNav li a {
+	display: block;
+	float: left;
+	height: 37px;
+	font-weight: bold;
+	line-height: 37px;
+	text-decoration: none;
+	color: #646464;
+	padding: 0 20px;
+}
+
+#mainNav li.logout {
+	float: right;
+	border-left: 1px solid #ddd;
+	border-right: none;
+}
+
+#mainNav li a:hover { background: #fdfcf6; }
+
+#mainNav li a.active {
+	background: #f0f0f0 url(../img/top-menu-item-bg.gif) repeat-x left top;
+	color: #454545;
+}
+
+/* Container ---------------------------------------- */
+
+#containerHolder {
+	background: #eee;
+	padding: 5px;
+}
+
+#container-full {
+	background-color: #fff;
+	border: 1px solid #ddd;
+}
+
+#container {
+	background: #fff url(../img/content.gif) repeat-y left top;
+	border: 1px solid #ddd;
+	width: 918px;
+}
+
+/* Sidebar ---------------------------------------- */
+
+#sidebar {
+	width: 179px;
+	float: left;
+}
+
+#sidebar .sideNav { width: 179px; }
+
+#sidebar .sideNav li { border-bottom: 1px solid #ddd; width: 179px; }
+
+#sidebar .sideNav li a {
+	display: block;
+	color: #646464;
+	background: #f6f6f6;
+	text-decoration: none;
+	/* height: 29px; */
+	line-height: 29px;
+	padding: 0 19px;
+	width: 141px;
+}
+
+#sidebar .sideNav li a:hover { background: #fdfcf6; }
+
+#sidebar .sideNav li a.active, #sidebar .sideNav li a.active:hover {
+	background: #f0f7fa;
+	color: #c66653;
+}
+
+/* Screen Title ---------------------------------------- */
+
+h2 {
+	width: 718px;
+	float: right;
+	color: #c66653; /* #646464 */
+	font-size: 16px;
+	line-height: 16px;
+	font-weight: bold;
+	margin: 20px 0 0 0;
+	padding: 0 0 10px 0;
+	border-bottom: 1px solid #ddd;
+}
+
+#container-full h2 {
+	width: 900px;
+}
+
+/* Message ---------------------------------------- */
+h4.message {
+	font-weight: bold;
+	color: #5494af;
+	font-size: 14px;
+	line-height: 14px;
+	margin: 10px 0;
+	padding: 0 0 5px 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+h4.title {
+	color: #5494af;
+	margin: 0 0 5px 0;
+	font-size: 120%;
+}
+
+/* Content ---------------------------------------- */
+
+#main {
+	width: 700px;
+	float: right;
+	padding: 0 19px 0 0;
+}
+
+#main-full {
+	width: 98%;
+	margin: 0px 10px 10px;
+	float: left;
+}
+
+h3 {
+	font-size: 14px;
+	line-height: 14px;
+	font-weight: bold;
+	color: #5494af;
+	padding: 0 0 0 10px;
+	margin: 20px 0 10px;
+}
+
+#main fieldset, #main-full fieldset {
+	border: 1px solid #ddd;
+	padding: 10px 19px;
+	margin: 10px 0 20px 0;
+}
+
+#main fieldset p, #main-full fieldset p { margin: 0 0 14px 0; width: 100%;}
+
+#main fieldset label, #main-full fieldset label {
+	display: block;
+	width: 100%;
+	margin: 10px 0 5px 0;
+	line-height: 12px;
+}
+
+#main fieldset .input, 
+#main fieldset .input-disabled,
+#main fieldset .input-mandatory,
+#main fieldset textarea,
+#main-full fieldset .input, 
+#main-full fieldset .input-disabled,
+#main-full fieldset .input-mandatory,
+#main-full fieldset textarea {
+	border: 1px solid #ddd;
+	font: 11px Verdana;
+	color: #646464;
+	padding: 5px;
+
+	margin: 0;
+}
+
+#main fieldset .input, #main-full fieldset .input {
+	background: #fff url(../img/input-shaddow.gif) no-repeat left top;
+}
+
+#main fieldset .input-disabled, #main-full fieldset .input-disabled {
+	background-color: #E8E8E8;
+	border: 1px solid #CCCCCC;
+	color: #5B5B5B;
+}
+
+#main fieldset .input-mandatory, #main-full fieldset .input-mandatory {
+	background-color: #E9D9FE;
+	border: 1px solid #CCCCCC;
+	color: #000000;
+}
+
+#main fieldset textarea, #main-full fieldset textarea {
+	width: 350px;
+	height: 100px;
+}
+
+/* Footer ---------------------------------------- */
+
+#footer {
+	margin: 10px 0 30px 0;
+	font-size: 11px;
+	line-height: 11px;
+	color: #9B9B9B;
+	padding: 0 0 0 5px;
+}
+
+#footer a { color: #9B9B9B; }
+
+#footer a:hover { text-decoration: none; }

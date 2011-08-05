@@ -1,0 +1,17 @@
+springMVC
+-----------------------
+springMVC adalah aplikasi untuk belajar JAVA web menggunakan Spring MVC
+
+Cara Menggunakan
+----------------
+1. Edit konfigurasi di file src\configuration.properties
+2. Jalankan "ant ciDeployDatabase" untuk mengenerate database secara otomatis
+3. Jalankan "ant war" untuk mengenerate file crud001.war
+4. Copy build/dist/springmvc.war ke folder TOMCAT_HOME/webapps (atau web folder server lain) dan jalankan server Anda
+
+Untuk lebih detailnya, silahkan lihat build.xml
+
+Kebutuhan Aplikasi
+------------------
+1. Java SDK versi 1.5 atau versi terbaru
+2. Apache Ant versi 1.7 atau terbaru

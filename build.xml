@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="springmvc" default="usage" basedir=".">
+
+    <target name="usage">
+        <echo message="--------------------------------------------"/>
+        <echo message="clean 	-> delete all directories and its content"/>
+    	<echo message="init 	-> create directories"/>
+        <echo message="compile 	-> compile java sources"/>
+    	<echo message="build 	-> build project artifacts"/>
+    	<echo message="war 		-> create war file"/>
+    	<echo message="generateDDL 		-> prepare database and tables ddl"/>
+    	<echo message="ciDeployDatabase	-> create database (execute ddl and dml)"/>
+    	<echo message="encryptPassword	-> create encrypted password"/>
+        <echo message="--------------------------------------------"/>
+    </target>
+	
+	<property name="src.dir" value="src"/>
+	
+	<filterset id="springmvc.filter">
+		<filtersfile file="${src.dir}/configuration.properties"/>
+	</filterset>
+	
+	<property name="build.dir" value="build/web"/>
+	<property name="database.dir" value="build/database"/>
+	<property name="war.dir" value="build/dist"/>
+	<property name="encrypt.dir" value="build"/>
+   
+	<property name="classes.dir" value="build/web/WEB-INF/classes"/>
+
+    <property name="lib.dir" 		value="WebContent/WEB-INF/lib"/>
+	
+	<property file="${src.dir}/configuration.properties"/>
+	
+	<!-- Password Encryption File -->
+	<property name="pwdorginal.file" 		value="${encrypt.dir}/orginal.txt"/>
+	<property name="pwdencrypted.file" 		value="${encrypt.dir}/encrypted.txt"/>
+	
+	<!-- Database Integration File -->
+	<property name="setupdatabase.file" 	value="${database.dir}/01 setupDatabase.sql"/>
+	<property name="mandatatorytable.file" 	value="02 tables.sql"/>
+	<property name="additionalDDL.file" 	value="${database.dir}/02.1 additionalDDL.sql"/>
+	<property name="requireddata.file" 		value="${database.dir}/03 requiredData.sql"/>
+	<property name="dummydata.file" 		value="${database.dir}/04 dummyData.sql"/>
+	
+    <path id="project.classpath">
+    	<pathelement path="${build.dir}/WEB-INF/classes"/>
+    	
+        <fileset dir="${lib.dir}">
+        	<include name="**/*.jar"/>
+        </fileset>
+    </path>
+	
+	<target name="encryptPassword" depends="build">
+		<taskdef name="encryptor" classname="app.anttask.PasswordEncryptorTask">
+			<classpath refid="project.classpath" />
+		</taskdef>
+		
+		<encryptor fromFile="${pwdorginal.file}" toFile="${pwdencrypted.file}"/>
+	</target>
+	
+    <target name="init">
+    	<mkdir dir="${encrypt.dir}" />
+        <mkdir dir="${build.dir}" />
+    	<mkdir dir="${database.dir}" />
+    	<mkdir dir="${war.dir}" />
+    	
+    	<!-- Encryption -->
+    	<touch file="${pwdorginal.file}"/>
+    </target>
+	
+	<target name="clean" description="Remove all files created by the build/test process.">
+        <delete dir="${build.dir}" />
+    	<delete dir="${war.dir}" />
+		<delete dir="${database.dir}" />
+    </target>
+
+    <target name="compile" depends="init">
+        <copy todir="${classes.dir}">
+            <fileset dir="${src.dir}" includes="**/*.xml,*.properties"/>
+        </copy>
+    	
+    	<copy todir="${build.dir}/WEB-INF/lib">
+            <fileset dir="${lib.dir}" includes="**/*.jar"/>
+        </copy>
+
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" debug="yes">
+            <classpath refid="project.classpath"/>
+            <src path="${src.dir}"/>
+        </javac>
+    </target>
+	
+	<target name="build" depends="compile">
+		<copy todir="${build.dir}">
+            <fileset dir="WebContent" includes="**/*.*" excludes="lib/*.jar"/>
+        </copy>
+	</target>
+	
+	<target name="war" depends="build">
+		<war destfile="${war.dir}/${webapp.name}.war" webxml="${build.dir}/WEB-INF/web.xml" update="true">
+            <fileset dir="${build.dir}">
+                <include name="**/*"/>
+            </fileset>
+        </war>
+	</target>
+	
+	<property name="database" value="mysql"/>
+	
+	<target name="generateDDL" depends="init">
+		<copy tofile="${setupdatabase.file}" overwrite="true">
+			<fileset dir="resources/sql/${database}/ddl" includes="setupDatabase.sql"/>
+			<filterset refid="springmvc.filter"/>
+		</copy>
+		
+		<copy tofile="${additionalDDL.file}" overwrite="true">
+			<fileset dir="resources/sql/${database}/ddl" includes="additionalDDL.sql"/>
+		</copy>
+		
+		<taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask" classpathref="project.classpath"/>
+		<taskdef name="schemaexport" classname="org.hibernate.tool.hbm2ddl.SchemaExportTask" classpathref="project.classpath"/>
+		
+		<hibernatetool destdir="${database.dir}">
+			<annotationconfiguration configurationfile="${src.dir}/hibernate.cfg.xml"/>
+			<hbm2ddl export="false" outputfilename="${mandatatorytable.file}"/>
+		</hibernatetool>
+	</target>
+	
+	<target name="ciDeployDatabase" depends="build, generateDDL">
+		<echo>Deploy database information</echo>
+		<echo>Admin URL 	: ${jdbc.admin.url}</echo>
+		<echo>Admin Username: ${jdbc.admin.username}</echo>
+		<echo>DB URL 		: ${jdbc.url}</echo>
+		<echo>Username 		: ${jdbc.username}</echo>
+		<echo>Password 		: ${jdbc.password}</echo>
+		<sql 
+				driver="${jdbc.driverClassName}"
+				url="${jdbc.admin.url}"
+				userid="${jdbc.admin.username}"
+				password="${jdbc.admin.password}"
+				autocommit="true">
+			<classpath refid="project.classpath" />
+			<transaction src="${setupdatabase.file}"/>
+		</sql>
+		
+		<echo>Executing DDL SQL</echo>
+		<sql 
+				driver="${jdbc.driverClassName}"
+				url="${jdbc.url}"
+				userid="${jdbc.username}"
+				password="${jdbc.password}"
+				autocommit="true">
+			<classpath refid="project.classpath" />
+			<transaction src="${database.dir}/${mandatatorytable.file}"/>
+			<transaction src="${additionalDDL.file}"/>
+		</sql>
+	</target>
+    
+</project>
