@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app id="CRUD-001" version="2.4" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_4.xsd">
 
-	<display-name>JAVA--Simple-CRUD---001</display-name>
+	<display-name>JAVA--SpringMVC</display-name>
 	
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>CRUD-001</param-value>
+		<param-value>springMVC</param-value>
 	</context-param>
 	
 	<!-- Spring Container -->

@@ -48,6 +48,15 @@
         <fileset dir="${lib.dir}">
         	<include name="**/*.jar"/>
         </fileset>
+    	
+    	<!-- Tomcat 6 lib -->
+		<fileset dir="${tomcat.home}/bin">
+			<include name="*.jar"/>
+		</fileset>
+    	
+		<fileset dir="${tomcat.home}/lib">
+			<include name="*.jar"/>
+		</fileset>
     </path>
 	
 	<target name="encryptPassword" depends="build">

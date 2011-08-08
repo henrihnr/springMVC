@@ -6,7 +6,7 @@ Cara Menggunakan
 ----------------
 1. Edit konfigurasi di file src\configuration.properties
 2. Jalankan "ant ciDeployDatabase" untuk mengenerate database secara otomatis
-3. Jalankan "ant war" untuk mengenerate file crud001.war
+3. Jalankan "ant war" untuk mengenerate file springmvc.war
 4. Copy build/dist/springmvc.war ke folder TOMCAT_HOME/webapps (atau web folder server lain) dan jalankan server Anda
 
 Untuk lebih detailnya, silahkan lihat build.xml
