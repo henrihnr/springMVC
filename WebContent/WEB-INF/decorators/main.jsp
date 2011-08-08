@@ -37,7 +37,7 @@
         </div>
         
         <p id="footer">
-        	Theme: transadmin
+        	Theme: <a href="http://www.transdmin.perspectived.com/">transadmin</a>
         </p>
 	</div>
 </body>

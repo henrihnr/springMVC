@@ -30,8 +30,8 @@
 			</jsp:include>
                 	
 			<h3>Detail Karyawan</h3>
-				<fieldset>
-					<table width="100%">
+			<fieldset>
+				<table width="100%">
 					<tr>
 						<td>
 							<label>ID:</label>
@@ -60,11 +60,11 @@
                 	 <tr>
                 	 	<td>
            	 				<label>DOB:</label>
-           	 				<input type="text" class="input" name="dob" value="${employee.dob}"/>
+           	 				<input type="text" class="input" name="dob" value="<fmt:formatDate value="${employee.dob}" pattern="dd-MM-yyyy"/>"/>
            	 			</td>
            	 			<td>
-           	 				<label>Work Time:</label>
-           	 				<input type="text" class="input" name="workTime" value="${employee.workTime}"/>
+           	 				<label>Jam Kerja:</label>
+           	 				<input type="text" class="input" name="workTime" value="<fmt:formatDate value="${employee.workTime}" pattern="hh:mm"/>"/>
            	 			</td>
                 	 </tr>
                 	 <tr>

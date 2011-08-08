@@ -53,6 +53,10 @@
 		<h2>Daftar Karyawan</h2>
 		
 		<div id="main-full">
+			<jsp:include page="../../message.jsp">
+				<jsp:param value="employee" name="command"/>
+			</jsp:include>
+			
 			<h3>Kriteria Pencarian</h3>
 			<fieldset>
 				<table width="100%">
@@ -99,14 +103,14 @@
 					<tbody>
 					<c:forEach var="employee" items="${employees}" varStatus="status">
 						<tr>
-							<td>${status.index + pagingInfo.offset + 1}</td>
-							<td>${employee.id}</td>
+							<td align="right">${status.index + pagingInfo.offset + 1}</td>
+							<td><a class="view" href="<c:url value="/master/employee/detail?id=${employee.id}"/>">${employee.id}</a></td>
 							<td>${employee.name}</td>
 							<td>${employee.gender}</td>
-							<td>${employee.dob}</td>
+							<td align="center"><fmt:formatDate value="${employee.dob}" pattern="dd-MM-yyyy"/></td>
 							<td>${employee.email}</td>
 							<td>${employee.phone}</td>
-							<td>${employee.workTime}</td>
+							<td align="center"><fmt:formatDate value="${employee.workTime}" pattern="hh:mm"/></td>
 							<td>${employee.status}</td>
 						</tr>
 					</c:forEach>
