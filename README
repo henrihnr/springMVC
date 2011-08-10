@@ -2,6 +2,16 @@ springMVC
 -----------------------
 springMVC adalah aplikasi untuk belajar JAVA web menggunakan Spring MVC
 
+technology stack yang digunakan adalah:
+- Jquery
+- JSP
+- Sitemesh
+- SpringMVC
+- Spring
+- Hibernate
+- JPA
+- Ant
+
 Cara Menggunakan
 ----------------
 1. Edit konfigurasi di file src\configuration.properties
