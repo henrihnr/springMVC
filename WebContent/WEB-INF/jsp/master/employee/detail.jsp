@@ -7,11 +7,18 @@
 <head>
 	<title></title>
 	
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.ui.datepicker.js"/>"></script>
+	
+	<link href="<c:url value="/resources/css/jquery-ui-timepicker.css"/>" rel="stylesheet" type="text/css" media="screen" />
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.ui.timepicker.js"/>"></script>
+	
 	<script type="text/javascript">
 	// validation
 	 
 	    $(document).ready(function() {
+	    	$(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
 	    	
+	    	$('.timepicker').timepicker();
 	    });
 	</script>
 	
@@ -60,11 +67,11 @@
                 	 <tr>
                 	 	<td>
            	 				<label>DOB:</label>
-           	 				<input type="text" class="input" name="dob" value="<fmt:formatDate value="${employee.dob}" pattern="dd-MM-yyyy"/>"/>
+           	 				<input type="text" class="input datepicker" name="dob" value="<fmt:formatDate value="${employee.dob}" pattern="dd-MM-yyyy"/>"/>
            	 			</td>
            	 			<td>
            	 				<label>Jam Kerja:</label>
-           	 				<input type="text" class="input" name="workTime" value="<fmt:formatDate value="${employee.workTime}" pattern="hh:mm"/>"/>
+           	 				<input type="text" class="input timepicker" name="workTime" value="<fmt:formatDate value="${employee.workTime}" pattern="hh:mm"/>"/>
            	 			</td>
                 	 </tr>
                 	 <tr>
