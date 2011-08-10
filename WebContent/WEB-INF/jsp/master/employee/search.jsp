@@ -98,7 +98,7 @@
 							<th>DOB</th>
 							<th>Email</th>
 							<th>No. Telp</th>
-							<th>Work Time</th>
+							<th>Jam Kerja</th>
 							<th>Status</th>
 						</tr>
 					</thead>
@@ -108,12 +108,18 @@
 							<td align="right">${status.index + pagingInfo.offset + 1}</td>
 							<td><a class="view" href="<c:url value="/master/employee/detail?id=${employee.id}"/>">${employee.id}</a></td>
 							<td>${employee.name}</td>
-							<td>${employee.gender}</td>
+							<td>
+								<c:if test="${employee.gender == 'm'}">Laki-Laki</c:if>
+								<c:if test="${employee.gender == 'f'}">Perempuan</c:if>
+							</td>
 							<td align="center"><fmt:formatDate value="${employee.dob}" pattern="dd-MM-yyyy"/></td>
 							<td>${employee.email}</td>
 							<td>${employee.phone}</td>
 							<td align="center"><fmt:formatDate value="${employee.workTime}" pattern="hh:mm"/></td>
-							<td>${employee.status}</td>
+							<td>
+								<c:if test="${employee.status}">Aktif</c:if>
+								<c:if test="${not empty employee.status && !employee.status}">Tidak Aktif</c:if>
+							</td>
 						</tr>
 					</c:forEach>
 					<c:if test="${empty employees}">
