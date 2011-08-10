@@ -3,6 +3,7 @@ package app.web.controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,53 @@ public class EmployeeController extends BaseController {
         modelMap.put("pagingInfo", searchResult.getPagingInfo());
         
 		return "master/employee/search";
+	}
+	
+	@Override
+	protected void specificSearch(Object object, StringBuilder buffer,
+			Map<String, Object> parameters, String operator, String prefix, String suffix) {
+		
+		Employee employee = (Employee) object;
+		
+		boolean isAppendAnd = false;
+		
+		if(StringUtils.isNotBlank(employee.getId())) {
+			buffer.append("employee.id " + operator + " :id");
+			
+			parameters.put("id", prefix + employee.getId() + suffix);
+			
+			isAppendAnd = true;
+		}
+		if(StringUtils.isNotBlank(employee.getName())) {
+			if(isAppendAnd) {
+				buffer.append(" and ");
+			}
+			buffer.append("employee.name " + operator + " :name");
+			
+			parameters.put("name", prefix + employee.getName() + suffix);
+			
+			isAppendAnd = true;
+		}
+		if(StringUtils.isNotBlank(employee.getEmail())) {
+			if(isAppendAnd) {
+				buffer.append(" and ");
+			}
+			buffer.append("employee.email " + operator + " :email");
+			
+			parameters.put("email", prefix + employee.getEmail() + suffix);
+			
+			isAppendAnd = true;
+		}
+		if(StringUtils.isNotBlank(employee.getPhone())) {
+			if(isAppendAnd) {
+				buffer.append(" and ");
+			}
+			buffer.append("employee.phone " + operator + " :phone");
+			
+			parameters.put("phone", prefix + employee.getPhone() + suffix);
+			
+			isAppendAnd = true;
+		}
 	}
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)

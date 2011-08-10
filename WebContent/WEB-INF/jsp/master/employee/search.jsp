@@ -81,6 +81,8 @@
 						</td>
 					</tr>
 				</table>
+				<br/><br/>
+				<input type="submit" value="Search" class="button"/>
 			</fieldset>
 			
 			<h3>Hasil Pencarian</h3>
